@@ -27,6 +27,7 @@ enum layer_names {
     _LOWER,
     _RAISE,
     _TRACK,
+    _MACRO,
     _ADJUST,
 };
 
@@ -43,6 +44,7 @@ enum custom_keycodes {
 #define LOWER  MO(_LOWER)
 #define RAISE  MO(_RAISE)
 #define TRACK  MO(_TRACK)
+#define MACRO  MO(_MACRO)
 #define ADJUST MO(_ADJUST)
 
 #define L1_ESC  LT(NUMS, KC_ESC)
@@ -50,9 +52,9 @@ enum custom_keycodes {
 #define L2_EN   LT(LOWER, KC_LNG2)
 #define L3_JP   LT(RAISE, KC_LNG1)
 #define L3_0    LT(RAISE, KC_0)
-#define L4_BTN2 LT(TRACK, KC_BTN2)
-#define L5_EN   LT(ADJUST, KC_LNG2)
-#define L5_JP   LT(ADJUST, KC_LNG1)
+#define L5_BTN2 LT(MACRO, KC_BTN2)
+#define L6_EN   LT(ADJUST, KC_LNG2)
+#define L6_JP   LT(ADJUST, KC_LNG1)
 #define CTL_BKSP RCTL_T(KC_BSPC)
 #define SHT_MINS RSFT_T(KC_MINS)
 #define SHT_SPC  LSFT_T(KC_SPC)
@@ -71,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Q,    KC_W,    KC_E,    KC_R,   KC_T,    XXXXXXX, SCRL_MO, KC_Y,    KC_U,  KC_I,    KC_O,    KC_P,
         KC_A,    KC_S,    KC_D,    KC_F,   KC_G,                       KC_H,    KC_J,  KC_K,    KC_L,    CTL_BKSP,
         KC_Z,    KC_X,    KC_C,    KC_V,   KC_B,                       KC_N,    KC_M,  KC_COMM, KC_DOT,  SHT_MINS,
-        L1_ESC,  KC_LALT, KC_LGUI, L2_EN,  SHT_SPC, KC_BTN1, L4_BTN2, CTL_ENT, L3_JP, KC_LEFT, KC_RGHT, KC_DEL
+        L1_ESC,  KC_LALT, KC_LGUI, L2_EN,  SHT_SPC, KC_BTN1, L5_BTN2, CTL_ENT, L3_JP, KC_LEFT, KC_RGHT, KC_DEL
     ),
     [_NUMS] = LAYOUT(
         KC_TAB,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_7,  KC_8,    KC_9,   XXXXXXX,
@@ -83,31 +85,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_EXLM, KC_AT,  KC_HASH, KC_DLR,  KC_PERC, XXXXXXX, XXXXXXX, KC_CIRC, KC_AMPR, KC_ASTR, KC_SLSH, KC_QUES,
         KC_F1,   KC_F2,  KC_F3,   KC_F4,   KC_F5,                      KC_GRV,  KC_MINS, KC_EQL,  KC_SCLN, KC_QUOT,
         KC_F6,   KC_F7,  KC_F8,   KC_F9,   KC_F10,                     KC_TILD, KC_UNDS, KC_PLUS, KC_COLN, KC_DQUO,
-        KC_F11,  KC_F12, _______, L2_EN,   KC_SPC,  XXXXXXX, XXXXXXX, KC_ENT,  L5_JP,   KC_BSLS, KC_PIPE, _______
+        KC_F11,  KC_F12, _______, L2_EN,   KC_SPC,  XXXXXXX, XXXXXXX, KC_ENT,  L6_JP,   KC_BSLS, KC_PIPE, _______
     ),
     [_RAISE] = LAYOUT(
         KC_TAB,  KC_BTN1, KC_MS_U, KC_BTN2, KC_LPRN, XXXXXXX, XXXXXXX, KC_RPRN, KC_HOME, KC_UP,   KC_END,  XXXXXXX,
         KC_LCTL, KC_MS_L, KC_MS_D, KC_MS_R, KC_LBRC,                   KC_RBRC, KC_LEFT, KC_DOWN, KC_RGHT, KC_BSPC,
         KC_LSFT, KC_WH_R, KC_BTN3, KC_WH_L, KC_LCBR,                   KC_RCBR, XXXXXXX, KC_PGUP, KC_PGDN, _______,
-        _______, KC_LALT, _______, L5_EN,   KC_SPC,  XXXXXXX, XXXXXXX, KC_ENT,  L3_JP,   KC_WH_D, KC_WH_U, _______
+        _______, KC_LALT, _______, L6_EN,   KC_SPC,  XXXXXXX, XXXXXXX, KC_ENT,  L3_JP,   KC_WH_D, KC_WH_U, _______
     ),
     [_TRACK] = LAYOUT(
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, SCRL_MO, M_CTRL, S_DESK,  XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, SCRL_MO, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        KC_ESC,  XXXXXXX, KC_LGUI, SCRL_MO, KC_SPC,  KC_BTN1, L5_BTN2, KC_ENT,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+    ),
+    [_MACRO] = LAYOUT(
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, M_CTRL, S_DESK,  XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   PREV_H,  NEXT_H,  XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   PREV_S,  NEXT_S,  XXXXXXX, XXXXXXX, XXXXXXX,
-        KC_ESC,  XXXXXXX, KC_LGUI, SCRL_MO, KC_SPC,  KC_BTN1, L4_BTN2, KC_ENT,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, L5_BTN2, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
     ),
     [_ADJUST] = LAYOUT(
-        QK_BOOT, _______, _______, _______, _______, XXXXXXX, XXXXXXX, _______, M_CTRL,  S_DESK,  _______, _______,
+        QK_BOOT, _______, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______,
         _______, SCRL_SW, L1_TGL,  KC_CAPS, _______,                    _______, KC_VOLD, KC_VOLU, _______, _______,
         _______, _______, _______, _______, _______,                    _______, KC_BRID, KC_BRIU, _______, _______,
         _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______
-    ),
-    [6] = LAYOUT(
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
     ),
     [7] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
@@ -150,9 +152,9 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
         case L2_EN:
         case L3_JP:
         case L3_0:
-        case L4_BTN2:
-        case L5_EN:
-        case L5_JP:
+        case L5_BTN2:
+        case L6_EN:
+        case L6_JP:
         case CTL_BKSP:
         case SHT_MINS:
         case SHT_SPC:
