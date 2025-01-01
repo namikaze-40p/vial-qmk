@@ -38,6 +38,7 @@ enum custom_keycodes {
   NEXT_SCREEN,
   MISSION_CONTROL,
   SHOW_DESKTOP,
+  ZOOM_TOGGLE,
 };
 
 #define NUMS   MO(_NUMS)
@@ -66,11 +67,12 @@ enum custom_keycodes {
 #define NEXT_S  NEXT_SCREEN
 #define M_CTRL  MISSION_CONTROL
 #define S_DESK  SHOW_DESKTOP
+#define ZOOM_T  ZOOM_TOGGLE
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_QWERTY] = LAYOUT(
-        KC_Q,    KC_W,    KC_E,    KC_R,   KC_T,    XXXXXXX, SCRL_MO, KC_Y,    KC_U,  KC_I,    KC_O,    KC_P,
+        KC_Q,    KC_W,    KC_E,    KC_R,   KC_T,    ZOOM_T,  SCRL_MO, KC_Y,    KC_U,  KC_I,    KC_O,    KC_P,
         KC_A,    KC_S,    KC_D,    KC_F,   KC_G,                       KC_H,    KC_J,  KC_K,    KC_L,    CTL_BKSP,
         KC_Z,    KC_X,    KC_C,    KC_V,   KC_B,                       KC_N,    KC_M,  KC_COMM, KC_DOT,  SHT_MINS,
         L1_ESC,  KC_LALT, KC_LGUI, L2_EN,  SHT_SPC, KC_BTN1, L5_BTN2, CTL_ENT, L3_JP, KC_LEFT, KC_RGHT, KC_DEL
@@ -94,21 +96,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_LALT, _______, L6_EN,   KC_SPC,  XXXXXXX, XXXXXXX, KC_ENT,  L3_JP,   KC_WH_D, KC_WH_U, _______
     ),
     [_TRACK] = LAYOUT(
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, SCRL_MO, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LCTL, SCRL_MO, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        KC_ESC,  XXXXXXX, KC_LGUI, SCRL_MO, KC_SPC,  KC_BTN1, L5_BTN2, KC_ENT,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+        KC_ESC,  KC_LALT, KC_LGUI, SCRL_MO, KC_SPC,  KC_BTN1, L5_BTN2, KC_ENT,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
     ),
     [_MACRO] = LAYOUT(
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, M_CTRL, S_DESK,  XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   PREV_H,  NEXT_H,  XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   PREV_S,  NEXT_S,  XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, L5_BTN2, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  M_CTRL, S_DESK,  XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                    PREV_H,  NEXT_H,  XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                    PREV_S,  NEXT_S,  XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, L5_BTN2,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
     ),
     [_ADJUST] = LAYOUT(
-        QK_BOOT, _______, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______,
-        _______, SCRL_SW, L1_TGL,  KC_CAPS, _______,                    _______, KC_VOLD, KC_VOLU, _______, _______,
-        _______, _______, _______, _______, _______,                    _______, KC_BRID, KC_BRIU, _______, _______,
+        QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, SCRL_SW, L1_TGL,  KC_CAPS, XXXXXXX,                    XXXXXXX, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                    XXXXXXX, KC_BRID, KC_BRIU, XXXXXXX, XXXXXXX,
         _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______
     ),
     [7] = LAYOUT(
@@ -213,6 +215,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code(KC_DOWN);
                 unregister_code(KC_LALT);
                 unregister_code(KC_LCTL);
+            }
+            return false;
+        case ZOOM_T:
+            if (record->event.pressed) {
+                register_code(KC_LALT);
+                register_code(KC_LGUI);
+                tap_code(KC_8);
+                unregister_code(KC_LALT);
+                unregister_code(KC_LGUI);
             }
             return false;
         default:
