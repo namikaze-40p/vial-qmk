@@ -81,6 +81,8 @@ void pointing_device_init_kb(void) {
     // set the CPI.
     pointing_device_set_cpi(cpi_array[cocot_config.cpi_idx]);
     cocot_config.raw = eeconfig_read_kb();
+    // 20250705_ADD: スクロール方向を反転するかどうかの設定で初期値を変更する方法が分からず、やむを得ずここで反転を強制的に指定した。
+    cocot_config.scrl_inv = true;
     eeconfig_update_kb(cocot_config.raw);
     //set_auto_mouse_layer(4);
     set_auto_mouse_enable(cocot_config.auto_mouse);
