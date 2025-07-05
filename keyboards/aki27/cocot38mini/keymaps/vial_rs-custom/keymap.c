@@ -62,7 +62,7 @@ enum custom_keycodes {
 #define L2_EN   LT(LOWER, KC_LNG2)
 #define L3_JP   LT(RAISE, KC_LNG1)
 #define L3_0    LT(RAISE, KC_0)
-#define L5_BTN2 LT(MACRO, MS_BTN2)
+#define L4_BTN2 LT(SCRL_MO, MS_BTN2)
 #define L5_ESC  LT(MACRO, KC_ESC)
 #define L6_EN   LT(ADJUST, KC_LNG2)
 #define L6_JP   LT(ADJUST, KC_LNG1)
@@ -88,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Q,   KC_W,   KC_E,    KC_R,   KC_T,                        KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,
         KC_A,   KC_S,   KC_D,    KC_F,   KC_G,                        KC_H,    KC_J,    KC_K,    KC_L,   ALT_BKSP,
         KC_Z,   KC_X,   KC_C,    KC_V,   KC_B,                        KC_N,    KC_M,    KC_COMM, KC_DOT, SHT_MINS,
-                        KC_LGUI, L2_EN,  SHT_SPC,  L5_BTN2, MS_BTN1,  CTL_ENT, L3_JP,   L5_ESC
+                        KC_LGUI, L2_EN,  SHT_SPC,  L4_BTN2, MS_BTN1,  CTL_ENT, L3_JP,   L5_ESC
     ),
     [_NUMS] = LAYOUT(
         KC_TAB,  XXXXXXX, KC_LALT, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_7,   KC_8,   KC_9,   KC_DEL,
@@ -118,7 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   M_CTRL, S_DESK, F_SCR,   C_SCR,  XXXXXXX,
         KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     PREV_H, NEXT_H, L_SCR,   R_SCR,  XXXXXXX,
         KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,                    KC_F11,  KC_F12, PREV_S, NEXT_S, KC_RSFT,
-                          KC_LGUI, XXXXXXX, SHT_SPC, L5_BTN2, XXXXXXX, CTL_ENT, XXXXXXX, L5_ESC
+                          KC_LGUI, XXXXXXX, SHT_SPC, XXXXXXX, XXXXXXX, CTL_ENT, XXXXXXX, L5_ESC
     ),
     [_ADJUST] = LAYOUT(
         XXXXXXX, XXXXXXX, RGB_TOG, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
@@ -207,7 +207,8 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
         case L2_EN:
         case L3_JP:
         case L3_0:
-        case L5_BTN2:
+        case L5_ESC:
+        case L4_BTN2:
         case L6_EN:
         case L6_JP:
         case ALT_BKSP:
