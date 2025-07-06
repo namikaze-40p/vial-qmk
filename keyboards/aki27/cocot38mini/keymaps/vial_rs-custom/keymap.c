@@ -83,6 +83,13 @@ enum custom_keycodes {
 #define R_SCR   RIGHT_SCREEN
 #define RAYCAST LAUNCH_RAYCAST
 
+// NOTE:
+// https://github.com/vial-kb/vial-qmk/issues/766
+// vialではFWコンパイル時にキーマップでcomboを定義できないため、
+// FWを書き込み後にvialのGUIでcomboを定義する必要がある。
+// ↓以下設定メモ
+// KC_C + KC_V --> MO(1)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(
         KC_Q,   KC_W,   KC_E,    KC_R,   KC_T,                        KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,
@@ -91,15 +98,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         KC_LGUI, L2_EN,  SHT_SPC,  L4_BTN2, MS_BTN1,  CTL_ENT, L3_JP,   L5_ESC
     ),
     [_NUMS] = LAYOUT(
-        KC_TAB,  XXXXXXX, KC_LALT, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_7,   KC_8,   KC_9,   KC_DEL,
-        KC_LCTL, LOWER,   L1_TGL,  NUMS,    XXXXXXX,                   KC_DOT,  KC_4,   KC_5,   KC_6,   KC_BSPC,
+        KC_TAB,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_7,   KC_8,   KC_9,   KC_DEL,
+        KC_LCTL, XXXXXXX, L1_TGL,  XXXXXXX, XXXXXXX,                   KC_DOT,  KC_4,   KC_5,   KC_6,   KC_BSPC,
         KC_LSFT, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_1,   KC_2,   KC_3,   SHT_MINS,
                            KC_LGUI, L2_EN,  _______, XXXXXXX, XXXXXXX, _______, L3_0,   KC_COMM
     ),
     [_LOWER] = LAYOUT(
         KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_SLSH, KC_QUES,
-        XXXXXXX, XXXXXXX, XXXXXXX, NUMS,    KC_BSLS,                   KC_GRV,  KC_MINS, KC_EQL,  KC_SCLN, KC_QUOT,
-        KC_LSFT, KC_LALT, XXXXXXX, RAYCAST, KC_PIPE,                   KC_TILD, KC_UNDS, KC_PLUS, KC_COLN, KC_DQUO,
+        XXXXXXX, XXXXXXX, XXXXXXX, RAYCAST, KC_BSLS,                   KC_GRV,  KC_MINS, KC_EQL,  KC_SCLN, KC_QUOT,
+        KC_LSFT, KC_LALT, XXXXXXX, XXXXXXX, KC_PIPE,                   KC_TILD, KC_UNDS, KC_PLUS, KC_COLN, KC_DQUO,
                           KC_LGUI, L2_EN,   KC_SPC,  XXXXXXX,XXXXXXX,  KC_ENT, L6_JP,   KC_BSLS
     ),
     [_RAISE] = LAYOUT(
