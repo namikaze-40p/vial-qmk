@@ -88,7 +88,7 @@ enum custom_keycodes {
 // vialではFWコンパイル時にキーマップでcomboを定義できないため、
 // FWを書き込み後にvialのGUIでcomboを定義する必要がある。
 // ↓以下設定メモ
-// KC_C + KC_V --> MO(1)
+// KC_D + KC_F --> MO(1)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(
@@ -116,15 +116,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                            KC_LGUI, L6_EN,   KC_SPC,  XXXXXXX, XXXXXXX, KC_ENT,  L3_JP,  XXXXXXX
     ),
     [_TRACK] = LAYOUT(
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   M_CTRL,  S_DESK, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   PREV_H,  NEXT_H, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                           KC_LGUI, SCRL_MO, SHT_SPC, SCRL_MO, MS_BTN1, CTL_ENT, XXXXXXX, KC_ESC
     ),
     [_MACRO] = LAYOUT(
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   M_CTRL, S_DESK, F_SCR,   C_SCR,  XXXXXXX,
-        KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     PREV_H, NEXT_H, L_SCR,   R_SCR,  XXXXXXX,
-        KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,                    KC_F11,  KC_F12, PREV_S, NEXT_S, KC_RSFT,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, C_SCR, XXXXXXX, XXXXXXX,
+        KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     XXXXXXX,  L_SCR,  F_SCR,  R_SCR,   XXXXXXX,
+        KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,                    KC_F11,  KC_F12,  PREV_S, NEXT_S,  KC_RSFT,
                           KC_LGUI, XXXXXXX, SHT_SPC, XXXXXXX, XXXXXXX, CTL_ENT, XXXXXXX, L5_ESC
     ),
     [_ADJUST] = LAYOUT(
