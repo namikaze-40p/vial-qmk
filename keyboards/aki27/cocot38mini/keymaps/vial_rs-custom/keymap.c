@@ -99,32 +99,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_NUMS] = LAYOUT(
         KC_TAB,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_7,   KC_8,   KC_9,   KC_DEL,
-        KC_LCTL, XXXXXXX, L1_TGL,  XXXXXXX, XXXXXXX,                   KC_DOT,  KC_4,   KC_5,   KC_6,   KC_BSPC,
+        KC_LCTL, XXXXXXX, L1_TGL,  KC_TAB,  XXXXXXX,                   KC_DOT,  KC_4,   KC_5,   KC_6,   KC_BSPC,
         KC_LSFT, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_1,   KC_2,   KC_3,   SHT_MINS,
                            KC_LGUI, L2_EN,  _______, XXXXXXX, XXXXXXX, _______, L3_0,   KC_COMM
     ),
     [_LOWER] = LAYOUT(
-        KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_SLSH, KC_QUES,
-        XXXXXXX, XXXXXXX, XXXXXXX, RAYCAST, KC_BSLS,                   KC_GRV,  KC_MINS, KC_EQL,  KC_SCLN, KC_QUOT,
-        KC_LSFT, KC_LALT, XXXXXXX, XXXXXXX, KC_PIPE,                   KC_TILD, KC_UNDS, KC_PLUS, KC_COLN, KC_DQUO,
-                          KC_LGUI, L2_EN,   KC_SPC,  XXXXXXX,XXXXXXX,  KC_ENT, L6_JP,   KC_BSLS
+        KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERC,                  KC_CIRC, KC_AMPR, KC_ASTR, KC_SLSH, KC_QUES,
+        KC_F1,   KC_F2, KC_F3,   KC_F4,  KC_F5,                    KC_GRV,  KC_MINS, KC_EQL,  KC_SCLN, KC_QUOT,
+        KC_F6,   KC_F7, KC_F8,   KC_F9,  KC_F10,                   KC_TILD, KC_UNDS, KC_PLUS, KC_COLN, KC_DQUO,
+                        KC_LGUI, L2_EN,  RAYCAST,  KC_F11, KC_F12, KC_BSLS, L6_JP,   KC_PIPE
     ),
     [_RAISE] = LAYOUT(
         KC_TAB,  KC_BTN1, KC_MS_U, KC_BTN2, KC_LPRN,                    KC_RPRN, KC_HOME, KC_UP,   KC_END,  KC_DEL,
         KC_LCTL, KC_MS_L, KC_MS_D, KC_MS_R, KC_LBRC,                    KC_RBRC, KC_LEFT, KC_DOWN, KC_RGHT, KC_BSPC,
         KC_LSFT, KC_LALT, XXXXXXX, XXXXXXX, KC_LCBR,                    KC_RCBR, XXXXXXX, KC_PGUP, KC_PGDN, _______,
-                           KC_LGUI, L6_EN,   KC_SPC,  XXXXXXX, XXXXXXX, KC_ENT,  L3_JP,  XXXXXXX
+                           KC_LGUI, L6_EN,   KC_SPC,  XXXXXXX, XXXXXXX, KC_ENT,  L3_JP,   XXXXXXX
     ),
     [_TRACK] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   M_CTRL,  S_DESK, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   PREV_H,  NEXT_H, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        KC_LSFT, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX,                   PREV_S,  NEXT_S, XXXXXXX, XXXXXXX, XXXXXXX,
                           KC_LGUI, SCRL_MO, SHT_SPC, SCRL_MO, MS_BTN1, CTL_ENT, XXXXXXX, KC_ESC
     ),
     [_MACRO] = LAYOUT(
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, C_SCR, XXXXXXX, XXXXXXX,
-        KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     XXXXXXX,  L_SCR,  F_SCR,  R_SCR,   XXXXXXX,
-        KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,                    KC_F11,  KC_F12,  PREV_S, NEXT_S,  KC_RSFT,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   C_SCR,   F_SCR,   L_SCR,   R_SCR,   XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, PREV_S,  NEXT_S,  XXXXXXX,
                           KC_LGUI, XXXXXXX, SHT_SPC, XXXXXXX, XXXXXXX, CTL_ENT, XXXXXXX, L5_ESC
     ),
     [_ADJUST] = LAYOUT(
