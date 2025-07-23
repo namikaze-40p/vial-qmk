@@ -66,7 +66,7 @@ enum custom_keycodes {
 #define L5_ESC  LT(MACRO, KC_ESC)
 #define L6_EN   LT(ADJUST, KC_LNG2)
 #define L6_JP   LT(ADJUST, KC_LNG1)
-#define ALT_BKSP RALT_T(KC_BSPC)
+#define ALT_ESC  RALT_T(KC_ESC)
 #define SHT_MINS RSFT_T(KC_MINS)
 #define SHT_SPC  LSFT_T(KC_SPC)
 #define CTL_ENT  RCTL_T(KC_ENT)
@@ -93,9 +93,9 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(
         KC_Q,   KC_W,   KC_E,    KC_R,   KC_T,                        KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,
-        KC_A,   KC_S,   KC_D,    KC_F,   KC_G,                        KC_H,    KC_J,    KC_K,    KC_L,   ALT_BKSP,
+        KC_A,   KC_S,   KC_D,    KC_F,   KC_G,                        KC_H,    KC_J,    KC_K,    KC_L,   KC_BSPC,
         KC_Z,   KC_X,   KC_C,    KC_V,   KC_B,                        KC_N,    KC_M,    KC_COMM, KC_DOT, SHT_MINS,
-                        KC_LGUI, L2_EN,  SHT_SPC,  L4_BTN2, MS_BTN1,  CTL_ENT, L3_JP,   L5_ESC
+                        KC_LGUI, L2_EN,  SHT_SPC,  L4_BTN2, MS_BTN1,  CTL_ENT, L3_JP,   ALT_ESC
     ),
     [_NUMS] = LAYOUT(
         KC_TAB,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_7,   KC_8,   KC_9,   KC_DEL,
@@ -112,20 +112,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_RAISE] = LAYOUT(
         KC_TAB,  KC_BTN1, KC_MS_U, KC_BTN2, KC_LPRN,                    KC_RPRN, KC_HOME, KC_UP,   KC_END,  KC_DEL,
         KC_LCTL, KC_MS_L, KC_MS_D, KC_MS_R, KC_LBRC,                    KC_RBRC, KC_LEFT, KC_DOWN, KC_RGHT, KC_BSPC,
-        KC_LSFT, KC_LALT, XXXXXXX, XXXXXXX, KC_LCBR,                    KC_RCBR, XXXXXXX, KC_PGUP, KC_PGDN, _______,
+        KC_LSFT, KC_LALT, XXXXXXX, XXXXXXX, KC_LCBR,                    KC_RCBR, MACRO,   KC_PGUP, KC_PGDN, _______,
                            KC_LGUI, L6_EN,   KC_SPC,  XXXXXXX, XXXXXXX, KC_ENT,  L3_JP,   XXXXXXX
     ),
     [_TRACK] = LAYOUT(
         KC_Q,   KC_W,   KC_E,    KC_R,    KC_T,                      M_CTRL,   S_DESK, KC_I,    KC_O,   KC_P,
         KC_A,   KC_S,   KC_D,    KC_F,    KC_G,                      PREV_H,   NEXT_H, KC_K,    KC_L,   KC_BSPC,
         KC_Z,   KC_X,   KC_C,    KC_V,    KC_B,                      PREV_S,   NEXT_S, KC_COMM, KC_DOT, XXXXXXX,
-                        KC_LGUI, SCRL_MO, SHT_SPC, SCRL_MO, MS_BTN1, CTL_ENT, XXXXXXX, KC_ESC
+                        KC_LGUI, SCRL_MO, SHT_SPC, SCRL_MO, MS_BTN1, CTL_ENT, XXXXXXX, ALT_ESC
     ),
     [_MACRO] = LAYOUT(
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, C_SCR,   XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, F_SCR,   L_SCR,   R_SCR,   XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                          KC_LGUI, XXXXXXX, SHT_SPC, XXXXXXX, XXXXXXX, CTL_ENT, XXXXXXX, L5_ESC
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, L_SCR,   R_SCR,   C_SCR,
+                          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, F_SCR,   MACRO,   XXXXXXX
     ),
     [_ADJUST] = LAYOUT(
         XXXXXXX, XXXXXXX, RGB_TOG, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
@@ -218,7 +218,7 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
         case L4_BTN2:
         case L6_EN:
         case L6_JP:
-        case ALT_BKSP:
+        case ALT_ESC:
         case SHT_MINS:
         case SHT_SPC:
         case CTL_ENT:
