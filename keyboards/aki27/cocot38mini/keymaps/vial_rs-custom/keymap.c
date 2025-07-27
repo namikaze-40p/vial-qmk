@@ -116,10 +116,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                            KC_LGUI, L6_EN,   KC_SPC,  XXXXXXX, XXXXXXX, KC_ENT,  L3_JP,   XXXXXXX
     ),
     [_TRACK] = LAYOUT(
-        KC_Q,   KC_W,   KC_E,    KC_R,    KC_T,                      M_CTRL,   S_DESK, KC_I,    KC_O,   KC_P,
-        KC_A,   KC_S,   KC_D,    KC_F,    KC_G,                      PREV_H,   NEXT_H, KC_K,    KC_L,   KC_BSPC,
-        KC_Z,   KC_X,   KC_C,    KC_V,    KC_B,                      PREV_S,   NEXT_S, KC_COMM, KC_DOT, XXXXXXX,
-                        KC_LGUI, SCRL_MO, SHT_SPC, SCRL_MO, MS_BTN1, CTL_ENT, XXXXXXX, ALT_ESC
+        KC_Q,   KC_W,   KC_E,    KC_R,  KC_T,                      M_CTRL,  S_DESK, KC_I,    KC_O,   KC_P,
+        KC_A,   KC_S,   KC_D,    KC_F,  KC_G,                      PREV_H,  NEXT_H, KC_K,    KC_L,   KC_BSPC,
+        KC_Z,   KC_X,   KC_C,    KC_V,  KC_B,                      PREV_S,  NEXT_S, KC_COMM, KC_DOT, XXXXXXX,
+                        KC_LGUI, L2_EN, SHT_SPC, SCRL_MO, MS_BTN1, CTL_ENT, L3_JP,  ALT_ESC
     ),
     [_MACRO] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
