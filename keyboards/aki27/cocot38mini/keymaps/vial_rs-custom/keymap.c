@@ -180,21 +180,22 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     int is_layer = get_highest_layer(layer_state|default_layer_state);
     HSV hsv = {0, 255, rgblight_get_val()};
     if (is_layer == 1) {
-      hsv.h = 11; //CORAL
+        hsv.h = 128; //CYAN
     } else if (is_layer == 2)  {
-      hsv.h = 85; //GREEN
+        hsv.h = 43; //YELLOW
     } else if (is_layer == 3)  {
-      hsv.h = 43; //YELLOW
+        hsv.h = 85; //GREEN
     } else if (is_layer == 4)  {
-      hsv.h = 0; //RED
+        hsv.h = 0; //RED
     } else if (is_layer == 5)  {
-      hsv.h = 191; //PURPLE
+        hsv.h = 20; //ORANGE
     } else if (is_layer == 6)  {
-      hsv.h = 64; //CHARTREUSE
+        hsv.h = 191; //PURPLE
     } else if (is_layer == 7)  {
-      hsv.h = 224;
+        hsv.h = 224;
     } else {
-      hsv.h = 128; //CYAN
+        hsv.h = 128; //LIGHT CYAN
+        hsv.s = 80;
     }
     RGB rgb = hsv_to_rgb(hsv);
 
