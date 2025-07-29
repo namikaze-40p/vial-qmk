@@ -4,8 +4,8 @@
 
 #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
 #define AUTO_MOUSE_DEFAULT_LAYER 4
-// 20250706_EDIT: カーソル移動後の自動マウスモード無効化が遅すぎるため650から0に変更
-#define AUTO_MOUSE_TIME 0
+// 20250729_EDIT: カーソル移動後の自動マウスモード無効化が遅すぎるため650から50に変更
+#define AUTO_MOUSE_TIME 50
 #define AUTO_MOUSE_DELAY 200
 #define AUTO_MOUSE_DEBOUNCE 25
 

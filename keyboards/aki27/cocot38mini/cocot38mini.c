@@ -181,6 +181,34 @@ report_mouse_t pointing_device_task_kb(report_mouse_t mouse_report) {
 }
 
 
+// 20250729_ADD: 打鍵の振動でAUTO_MOUSE_MODEに入ってしまうことを防ぐため、pointing_device_task_userを定義。
+static uint16_t auto_mouse_timer = 0;
+static bool auto_mouse_active = false;
+
+report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
+    const int8_t DEADZONE = 1;
+    const uint16_t TIME_THRESHOLD = 10;
+
+    bool has_moved = abs(mouse_report.x) > DEADZONE || abs(mouse_report.y) > DEADZONE;
+
+    if (has_moved) {
+        if (!auto_mouse_active) {
+            auto_mouse_timer = timer_read();
+            auto_mouse_active = true;
+        } else {
+            if (timer_elapsed(auto_mouse_timer) < TIME_THRESHOLD) {
+                mouse_report.x = 0;
+                mouse_report.y = 0;
+            }
+        }
+    } else {
+        auto_mouse_active = false;
+    }
+
+    return mouse_report;
+}
+
+
 bool process_record_kb(uint16_t keycode, keyrecord_t* record) {
     // xprintf("KL: kc: %u, col: %u, row: %u, pressed: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed);
 
