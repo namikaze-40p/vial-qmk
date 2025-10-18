@@ -38,18 +38,12 @@ enum layer_names {
 };
 
 enum custom_keycodes {
-    PREV_HISTORY = SAFE_RANGE,
-    NEXT_HISTORY,
-    PREV_SCREEN,
-    NEXT_SCREEN,
-    MISSION_CONTROL,
-    SHOW_DESKTOP,
-    FULL_SCREEN,
+    FULL_SCREEN  = SAFE_RANGE,
     CENTER_SCREEN,
     LEFT_SCREEN,
     RIGHT_SCREEN,
     LAUNCH_RAYCAST,
-  };
+};
 
 #define NUMS   MO(_NUMS)
 #define LOWER  MO(_LOWER)
@@ -62,7 +56,6 @@ enum custom_keycodes {
 #define L2_EN   LT(LOWER, KC_LNG2)
 #define L3_JP   LT(RAISE, KC_LNG1)
 #define L3_0    LT(RAISE, KC_0)
-#define L4_BTN2 LT(SCRL_MO, MS_BTN2)
 #define L5_ESC  LT(MACRO, KC_ESC)
 #define L6_EN   LT(ADJUST, KC_LNG2)
 #define L6_JP   LT(ADJUST, KC_LNG1)
@@ -71,12 +64,6 @@ enum custom_keycodes {
 #define SHT_SPC  LSFT_T(KC_SPC)
 #define CTL_ENT  RCTL_T(KC_ENT)
 
-#define PREV_H  PREV_HISTORY
-#define NEXT_H  NEXT_HISTORY
-#define PREV_S  PREV_SCREEN
-#define NEXT_S  NEXT_SCREEN
-#define M_CTRL  MISSION_CONTROL
-#define S_DESK  SHOW_DESKTOP
 #define F_SCR   FULL_SCREEN
 #define C_SCR   CENTER_SCREEN
 #define L_SCR   LEFT_SCREEN
@@ -89,13 +76,23 @@ enum custom_keycodes {
 // FWを書き込み後にvialのGUIでcomboを定義する必要がある。
 // ↓以下設定メモ
 // KC_D + KC_F --> MO(1)
+//
+// Vialが有効の場合、QMKでTap Danceの定義がしづらいため、
+// FWを書き込み後にvialのGUIでTap Danceを定義している。
+// ↓以下設定メモ
+// TD(0) -->
+//  On tap: Mouse2
+//  On hold: SCRL_MO
+//
+// また、デフォルトでは自動マウスレイヤーが有効だが、AM_TOGキーで無効化した。
+// 有効化すると打鍵時に予期しないキー入力が発生しやすかったため。
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(
         KC_Q,   KC_W,   KC_E,    KC_R,   KC_T,                        KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,
         KC_A,   KC_S,   KC_D,    KC_F,   KC_G,                        KC_H,    KC_J,    KC_K,    KC_L,   KC_BSPC,
         KC_Z,   KC_X,   KC_C,    KC_V,   KC_B,                        KC_N,    KC_M,    KC_COMM, KC_DOT, SHT_MINS,
-                        KC_LGUI, L2_EN,  SHT_SPC,  L4_BTN2, MS_BTN1,  CTL_ENT, L3_JP,   ALT_ESC
+                        KC_LGUI, L2_EN,  SHT_SPC,  SCRL_MO, MS_BTN1,  CTL_ENT, L3_JP,   ALT_ESC
     ),
     [_NUMS] = LAYOUT(
         KC_TAB,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_7,   KC_8,   KC_9,   KC_DEL,
@@ -116,10 +113,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                            KC_LGUI, L6_EN,   KC_SPC,  XXXXXXX, XXXXXXX, KC_ENT,  L3_JP,   XXXXXXX
     ),
     [_TRACK] = LAYOUT(
-        KC_Q,   KC_W,   KC_E,    KC_R,  KC_T,                      M_CTRL,  S_DESK, KC_I,    KC_O,   KC_P,
-        KC_A,   KC_S,   KC_D,    KC_F,  KC_G,                      PREV_H,  NEXT_H, KC_K,    KC_L,   KC_BSPC,
-        KC_Z,   KC_X,   KC_C,    KC_V,  KC_B,                      PREV_S,  NEXT_S, KC_COMM, KC_DOT, XXXXXXX,
-                        KC_LGUI, L2_EN, SHT_SPC, SCRL_MO, MS_BTN1, CTL_ENT, L3_JP,  ALT_ESC
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                    XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                    XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                    XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+                          XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX
     ),
     [_MACRO] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
@@ -128,7 +125,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, F_SCR,   MACRO,   XXXXXXX
     ),
     [_ADJUST] = LAYOUT(
-        XXXXXXX, XXXXXXX, RGB_TOG, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, RGB_TOG, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, AM_TOG,  XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, L1_TGL,  KC_CAPS, XXXXXXX,                   XXXXXXX, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_BRID, KC_BRIU, XXXXXXX, XXXXXXX,
                           XXXXXXX, XXXXXXX, XXXXXXX, QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
@@ -161,9 +158,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 bool is_mouse_record_kb(uint16_t keycode, keyrecord_t* record) {
     switch(keycode) {
       case KC_LCTL:
-        return true;
       case KC_LSFT:
-        return true;
       case SCRL_MO:
         return true;
       default:
@@ -216,7 +211,6 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
         case L3_JP:
         case L3_0:
         case L5_ESC:
-        case L4_BTN2:
         case L6_EN:
         case L6_JP:
         case ALT_ESC:
@@ -232,54 +226,68 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
 }
 
 
+// クリック保持状態のフラグ
+// MS_BTN1と他キーの同時押しで特定の動作をさせるために使用
+// 自動マウスレイヤーが有効なら不要だが無効化したことで必要になった
+static bool ms_btn1_held = false;
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case PREV_H:
-            if (record->event.pressed) {
-                register_code(KC_LGUI);
-                tap_code(KC_LBRC);
-                unregister_code(KC_LGUI);
-            }
-            return false;
-        case NEXT_H:
-            if (record->event.pressed) {
-                register_code(KC_LGUI);
-                tap_code(KC_RBRC);
-                unregister_code(KC_LGUI);
-            }
-            return false;
-        case PREV_S:
-            if (record->event.pressed) {
-                register_code(KC_LCTL);
-                tap_code(KC_COMM);
-                unregister_code(KC_LCTL);
-            }
-            return false;
-        case NEXT_S:
-            if (record->event.pressed) {
-                register_code(KC_LCTL);
-                tap_code(KC_DOT);
-                unregister_code(KC_LCTL);
-            }
-            return false;
-        case M_CTRL:
-            if (record->event.pressed) {
+        case MS_BTN1:
+            ms_btn1_held = record->event.pressed;
+            return true;
+        case KC_Y: // Mission Control
+            if (record->event.pressed && ms_btn1_held) {
                 register_code(KC_LALT);
                 register_code(KC_LCTL);
                 tap_code(KC_UP);
                 unregister_code(KC_LALT);
                 unregister_code(KC_LCTL);
+                return false;
             }
-            return false;
-        case S_DESK:
-            if (record->event.pressed) {
+            return true;
+        case KC_U: // Show Desktop
+            if (record->event.pressed && ms_btn1_held) {
                 register_code(KC_LALT);
                 register_code(KC_LCTL);
                 tap_code(KC_DOWN);
                 unregister_code(KC_LALT);
                 unregister_code(KC_LCTL);
+                return false;
             }
-            return false;
+            return true;
+        case KC_H: // Previous History
+            if (record->event.pressed && ms_btn1_held) {
+                register_code(KC_LGUI);
+                tap_code(KC_LBRC);
+                unregister_code(KC_LGUI);
+                return false;
+            }
+            return true;
+        case KC_J: // Next History
+            if (record->event.pressed && ms_btn1_held) {
+                register_code(KC_LGUI);
+                tap_code(KC_RBRC);
+                unregister_code(KC_LGUI);
+                return false;
+            }
+            return true;
+        case KC_N: // Previous Screen
+            if (record->event.pressed && ms_btn1_held) {
+                register_code(KC_LCTL);
+                tap_code(KC_COMM);
+                unregister_code(KC_LCTL);
+                return false;
+            }
+            return true;
+        case KC_M: // Next Screen
+            if (record->event.pressed && ms_btn1_held) {
+                register_code(KC_LCTL);
+                tap_code(KC_DOT);
+                unregister_code(KC_LCTL);
+                return false;
+            }
+            return true;
         case F_SCR:
             if (record->event.pressed) {
                 register_code(KC_LALT);
